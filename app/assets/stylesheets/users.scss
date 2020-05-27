@@ -1,14 +1,24 @@
 /* ユーザー情報テーブル */
 
-.user-table {
-  vertical-align: middle;
-  text-align: center;
+td.rows1 {
+  vertical-align :bottom;
 }
+
+.user-table {
+
+  text-align: center;
+  td {
+    font-weight: bold;
+    vertical-align: bottom;
+  }
+}
+
+
 
 /* ユーザー情報下ボタン */
 
 .btn-users-show {
-  margin-top: -10px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -28,19 +38,19 @@
 /* 入力フォーム */
 
 .label-signup {
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .btn-signup {
-  margin-top: 10px;
+  margin-top: 3px;
 }
 
 .label-user--edit {
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .btn-user--edit {
-  margin-top: 10px;
+  margin-top: 3px;
 }
 
 /* ユーザー一覧ページ */
@@ -48,8 +58,13 @@
 #table-users {
   td {
     vertical-align: middle;
-  }  
+  } 
 }
+
+.input-group-btn {
+  display: inline flex;
+}
+
 
 /* 基本情報編集モーダルウインドウ */
 
