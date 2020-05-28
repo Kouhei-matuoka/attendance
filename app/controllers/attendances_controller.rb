@@ -37,15 +37,24 @@ class AttendancesController < ApplicationController
     attendances_params.each do |id,item|
       attendance = Attendance.find(id)
       attendance.update_attributes!(item)
+      if item [:started_at].blank? && item [:finished_at].present?
+        flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+        redirect_to attendances_edit_one_month_user_url(date: params[:date])
+        return
+      elsif
+       item [:finished_at].blank? && item [:started_at].present?
+        flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+        redirect_to attendances_edit_one_month_user_url(date: params[:date])
+      end 
+        return
+      end
     end
+  flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
+  redirect_to user_url(date: params[:date])
+  rescue ActiveRecord::RecordInvalid # トランザクションによるエラーの分岐です。
+  flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
+  redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
-    flash[:success] = "1ヶ月分の勤怠情報を更新しました。"
-    redirect_to user_url(date: params[:date])
-  rescue ActiveRecord::RecordInvalid 
-    flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
-    redirect_to attendances_edit_one_month_user_url(date: params[:date])
-  end
-  
 
   
   private

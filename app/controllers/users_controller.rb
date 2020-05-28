@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     end
     
     
-     # beforeフィルター
+     
     
     # 管理権限者、または現在ログインしているユーザーを許可します。
     def admin_or_correct_user
